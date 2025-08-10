@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COMP-6062 Project-1234169</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="app" class="container">
+    <header>
+        <h1>Joliph Macwan - 1234169</h1>
+    </header>
+    <main>
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Random User Profile</h2>
+                <img :src="user.avatar" width="150">
+                <p>Name: {{ user.name }}</p>
+                <p>Age: {{ user.age }}</p>
+                <button @click="getRandomUser">Next User Profile</button>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Weather Information</h2>
+                <input v-model="city" placeholder="City">
+                <input v-model="province" placeholder="Province">
+                <input v-model="country" placeholder="Country">
+                <button @click="getWeather">Get Weather Data</button>
+                <p>Temperature: {{ weather.temperature }}</p>
+                <p>Wind: {{ weather.wind }}</p>
+                <p>Description: {{ weather.description }}</p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Dictionary</h2>
+                <input v-model="word" placeholder="Enter Word">
+                <button @click="defineWord">Define Word</button>
+                <p>Word: {{ dictionary.word }}</p>
+                <p>Phonetic: {{ dictionary.phonetic }}</p>
+                <p>Definition: {{ dictionary.definition }}</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        Joliph Macwan - 1234169
+    </footer>
+</div>
+<script src="https://unpkg.com/vue@3.4.31/dist/vue.global.js"></script>
+<script src="scripts/app.js"></script>
+</body>
+</html>
