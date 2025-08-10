@@ -2,19 +2,19 @@ const app = Vue.createApp({
     data() {
         return {
             user: {
-                name: '',
-                age: '',
-                avatar: ''   
+                profile_picture: '',
+                first_name: '',
+                last_name: '',
+                age: ''
             },
-            city: 'London',     
-            province: 'Ontario',
-            country: 'Canada',
             weather: {
-                temperature: '',
+                city: 'London',
+                province: 'Ontario',
+                country: 'Canada',
+                temp: '',
                 wind: '',
-                description: ''
+                desc: ''
             },
-            word: '',   
             dictionary: {
                 word: '',
                 phonetic: '',
@@ -23,44 +23,45 @@ const app = Vue.createApp({
         };
     },
 
+    created() {
+        this.User();
+        this.Weather();
+    },
+
     methods: {
-        getRandomUser() {  
+        User() {
             fetch('https://comp6062.liamstewart.ca/random-user-data')
                 .then(response => response.json())
                 .then(data => {
-                    this.user.name = data.firstName + " " + data.lastName;
-                    this.user.age = data.age;
-                    this.user.avatar = data.avatar;
-                });
+                    this.user.profile_picture = data.user_profile.avatar_url;
+                    this.user.first_name = data.user_profile.first_name;
+                    this.user.last_name = data.user_profile.last_name;
+                    this.user.age = data.user_profile.age;
+                })
+                .catch(error => console.error('User fetch error:', error));
         },
 
-getWeather() {
-    fetch(`https://comp6062.liamstewart.ca/weather-data?city=${this.city}&province=${this.province}&country=${this.country}`)
-        .then(response => response.json())
-        .then(data => {
-            this.weather.temperature = data.weather_data.temperature;
-            this.weather.wind = data.weather_data.wind_speed;
-            this.weather.description = data.weather_data.weather_description;
-        })
-        .catch(error => {
-            console.log("Weather fetch error:", error);
-        });
+        Weather() {
+            fetch(`https://comp6062.liamstewart.ca/weather-data?city=${this.weather.city}&province=${this.weather.province}&country=${this.weather.country}`)
+                .then(response => response.json())
+                .then(data => {
+                    this.weather.temp = data.weather_data.temperature;
+                    this.weather.wind = data.weather_data.wind_speed;
+                    this.weather.desc = data.weather_data.weather_description;
+                })
+                .catch(error => console.error('Weather fetch error:', error));
         },
 
-        defineWord() {  
-            fetch('https://comp6062.liamstewart.ca/api/define?word=' + this.word)
+        Dictionary() {
+            fetch(`https://comp6062.liamstewart.ca/api/define?word=${this.dictionary.word}`)
                 .then(response => response.json())
                 .then(data => {
                     this.dictionary.word = data.word;
                     this.dictionary.phonetic = data.phonetic;
                     this.dictionary.definition = data.definition;
-                });
+                })
+                .catch(error => console.error('Dictionary fetch error:', error));
         }
-    },
-
-    created() {
-        this.getRandomUser();
-        this.getWeather();
     }
 });
 
