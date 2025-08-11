@@ -22,12 +22,11 @@ const app = Vue.createApp({
             }
         };
     },
-
     created() {
         this.User();
         this.Weather();
+        this.Dictionary();
     },
-
     methods: {
         User() {
             fetch('https://comp6062.liamstewart.ca/random-user-data')
@@ -40,7 +39,6 @@ const app = Vue.createApp({
                 })
                 .catch(error => console.error('User fetch error:', error));
         },
-
         Weather() {
             fetch(`https://comp6062.liamstewart.ca/weather-data?city=${this.weather.city}&province=${this.weather.province}&country=${this.weather.country}`)
                 .then(response => response.json())
@@ -51,7 +49,6 @@ const app = Vue.createApp({
                 })
                 .catch(error => console.error('Weather fetch error:', error));
         },
-
         Dictionary() {
             fetch(`https://comp6062.liamstewart.ca/api/define?word=${this.dictionary.word}`)
                 .then(response => response.json())

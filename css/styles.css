@@ -1,3 +1,10 @@
+body
+{
+    color: blueviolet;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: blanchedalmond;
+}
+
 footer {
     background-color: #1c72fe;
     color: white;
@@ -5,11 +12,19 @@ footer {
     margin-top: 20px;
     text-align: center;
 }
-
-
+h2
+{
+    color: brown;
+}
+h1
+{
+    font: bold;
+}
 @media (max-width: 768px) {
     h2
     {
         font-size: 16px;
+        color: aqua;
+        font: bolder;
     }
 }
