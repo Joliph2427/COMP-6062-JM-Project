@@ -5,7 +5,8 @@ const app = Vue.createApp({
                 profile_picture: '',
                 first_name: '',
                 last_name: '',
-                age: ''
+                age: '',
+                full_name:'firstname'+'last_name'
             },
             weather: {
                 city: 'London',
